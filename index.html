@@ -9,11 +9,7 @@
 </head>
 <body class="light-mode">
   <div class="toggle-container">
-    <label class="switch">
-      <input type="checkbox" id="theme-toggle">
-      <span class="slider"></span>
-    </label>
-    <span id="theme-label">Switch to Dark</span>
+    <button id="theme-toggle" class="toggle-btn">Switch to Dark</button>
   </div>
 
   <div class="hero">
@@ -25,19 +21,18 @@
   <div class="background-animation"></div>
 
   <script>
-    const toggle = document.getElementById("theme-toggle");
-    const label = document.getElementById("theme-label");
+    const button = document.getElementById("theme-toggle");
     const body = document.body;
 
-    toggle.addEventListener("change", () => {
-      if (toggle.checked) {
+    button.addEventListener("click", () => {
+      if (body.classList.contains("light-mode")) {
         body.classList.remove("light-mode");
         body.classList.add("dark-mode");
-        label.textContent = "Switch to Light";
+        button.textContent = "Switch to Light";
       } else {
         body.classList.remove("dark-mode");
         body.classList.add("light-mode");
-        label.textContent = "Switch to Dark";
+        button.textContent = "Switch to Dark";
       }
     });
   </script>
