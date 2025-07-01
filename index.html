@@ -7,35 +7,61 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Hero Landing Section -->
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">P</div>
+    <div class="brand">PathakGPT</div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
+  </nav>
+
+  <!-- HERO -->
   <section class="hero">
-    <div class="container">
-      <h1><span>PathakGPT</span></h1>
-      <p>⚡ Powered by Sameer Inc.</p>
-      <div class="buttons">
-        <a href="#chat" class="btn primary">Start Chatting</a>
-        <a href="https://pathaksameer.com.np" class="btn outline">Visit Website</a>
-      </div>
+    <h1><span>PathakGPT</span></h1>
+    <p>🚀 Experience the future of AI conversation</p>
+    <div class="buttons">
+      <a href="#chat" class="btn primary">Start Chatting</a>
+      <a href="https://pathaksameer.com.np" class="btn outline">Visit Website</a>
     </div>
   </section>
 
-  <!-- Chat Section -->
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="feature-card">
+      <div class="icon">🧠</div>
+      <h3>Advanced AI</h3>
+      <p>Powered by cutting-edge language models</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">⚡</div>
+      <h3>Lightning Fast</h3>
+      <p>Instant responses to your queries</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">✨</div>
+      <h3>Personalized</h3>
+      <p>Tailored responses just for you</p>
+    </div>
+  </section>
+
+  <!-- CHAT -->
   <section class="chat-section" id="chat">
-    <div class="chat-container">
-      <h2>💬 Ask Anything</h2>
-      <div id="chat-box" class="chat-box"></div>
-      <input id="user-input" placeholder="Ask me anything..." />
-      <button onclick="sendMessage()">Send</button>
-    </div>
+    <h2>💬 Ask Anything</h2>
+    <div id="chat-box" class="chat-box"></div>
+    <input id="user-input" placeholder="Ask me anything..." />
+    <button onclick="sendMessage()">Send</button>
   </section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <p>© 2025 PathakGPT by Sameer Pathak. All rights reserved.</p>
   </footer>
 
-  <!-- Script -->
   <script>
+    const toggleBtn = document.getElementById("theme-toggle");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+    });
+
     async function sendMessage() {
       const input = document.getElementById("user-input");
       const chatBox = document.getElementById("chat-box");
@@ -46,14 +72,18 @@
       chatBox.innerHTML += `<div class="message user"><b>You:</b> ${userText}</div>`;
       input.value = "";
 
-      const res = await fetch("https://pathakgpt-gemini.onrender.com/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userText })
-      });
+      try {
+        const res = await fetch("https://pathakgpt-gemini.onrender.com/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: userText })
+        });
+        const data = await res.json();
+        chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> ${data.text}</div>`;
+      } catch (err) {
+        chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> Error connecting to server</div>`;
+      }
 
-      const data = await res.json();
-      chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> ${data.text}</div>`;
       chatBox.scrollTop = chatBox.scrollHeight;
     }
   </script>
