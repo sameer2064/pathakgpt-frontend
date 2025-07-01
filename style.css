@@ -1,196 +1,143 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
-  color: white;
-  transition: 0.3s;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #fff;
+  transition: background 0.3s, color 0.3s;
 }
 body.light {
-  background: #f0f0f0;
+  background: #f7f7f7;
   color: #111;
 }
-a {
-  text-decoration: none;
-}
 nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 10px 20px;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 999;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
 }
 .nav-left {
   display: flex;
   align-items: center;
 }
 .logo {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(to right, #8a2be2, #00bcd4);
+  width: 40px; height: 40px;
+  background: linear-gradient(45deg, #8a2be2, #00bcd4);
+  display: flex; align-items: center; justify-content: center;
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
+  font-weight: 700; font-size: 1.2rem;
 }
 .brand {
+  font-weight: 700;
   font-size: 1.5rem;
-  font-weight: bold;
-  margin-left: 10px;
-  background: linear-gradient(90deg, #8a2be2, #00bcd4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin-left: 8px;
 }
 .theme-toggle {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  display: flex; align-items: center; gap: 5px;
 }
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 20px;
-}
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+.switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+.switch input { opacity: 0; width: 0; height: 0; }
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #ccc;
-  border-radius: 34px;
-  transition: .4s;
+  position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc; transition: .4s; border-radius: 20px;
 }
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 14px;
-  width: 14px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
+  position: absolute; content: ""; height: 14px; width: 14px;
+  left: 3px; bottom: 3px; background: white; border-radius: 50%;
   transition: .4s;
-  border-radius: 50%;
 }
-input:checked + .slider {
-  background-color: #8a2be2;
-}
-input:checked + .slider:before {
-  transform: translateX(20px);
-}
+input:checked + .slider { background-color: #8a2be2; }
+input:checked + .slider:before { transform: translateX(20px); }
+
 .hero {
-  padding-top: 80px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
+  min-height: 100vh; padding-top: 80px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
 }
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-.hero span {
+.big-title {
+  font-family: 'Roboto Slab', serif;
+  font-size: 4rem;
+  font-weight: 700;
   background: linear-gradient(90deg, #8a2be2, #00bcd4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.hero p {
-  max-width: 600px;
-  margin-bottom: 20px;
+.tagline {
+  max-width: 600px; margin-top: 10px; font-size: 1.1rem;
 }
 .buttons {
-  display: flex;
-  gap: 10px;
+  margin-top: 20px; display: flex; gap: 10px;
 }
 .btn {
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-weight: bold;
+  padding: 10px 20px; border-radius: 20px; font-weight: 600; cursor: pointer;
+  text-decoration: none; transition: 0.3s;
 }
-.btn.primary {
+.primary {
   background: linear-gradient(to right, #8a2be2, #00bcd4);
-  color: white;
+  color: #fff;
 }
-.btn.outline {
-  border: 2px solid #8a2be2;
-  color: #8a2be2;
+.outline {
+  border: 2px solid #8a2be2; color: #8a2be2;
 }
-.btn.outline:hover {
-  background: #8a2be2;
-  color: white;
+.outline:hover {
+  background: #8a2be2; color: #fff;
 }
-.features, .about, .stats {
-  padding: 50px 20px;
-  text-align: center;
+
+.features {
+  padding: 50px 20px; text-align: center;
 }
 .feature-card {
-  display: inline-block;
-  background: rgba(0,0,0,0.3);
-  border-radius: 10px;
-  padding: 20px;
-  width: 200px;
-  margin: 10px;
+  background: rgba(255,255,255,0.05);
+  padding: 20px; border-radius: 10px; margin: 10px auto; max-width: 300px;
 }
-.about .badges span {
-  display: inline-block;
-  background: rgba(138,43,226,0.2);
-  padding: 5px 10px;
-  margin: 5px;
-  border-radius: 8px;
+.feature-card h3 { font-weight: 700; }
+
+.about {
+  padding: 50px 20px; text-align: center;
 }
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.about h2 {
+  font-size: 2rem; font-weight: 700;
 }
-.stat {
-  background: rgba(0,0,0,0.3);
-  padding: 10px 20px;
-  border-radius: 8px;
+.about p {
+  max-width: 600px; margin: 0 auto;
 }
-.stat .num {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
+
 .chat {
-  padding: 50px 20px;
-  text-align: center;
+  padding: 50px 20px; text-align: center;
 }
 .chat-box {
-  width: 100%;
-  max-width: 600px;
-  height: 250px;
-  margin: 10px auto;
-  padding: 10px;
-  border-radius: 10px;
+  max-width: 600px; height: 250px;
+  margin: 0 auto 10px auto;
+  padding: 10px; border-radius: 10px;
   overflow-y: auto;
-  background: #1a1a2e;
+  background: rgba(0,0,0,0.3);
 }
-.message.user { color: #8a2be2; }
-.message.bot { color: #00bcd4; }
+.message { margin: 5px 0; }
+.message.user { color: #8a2be2; font-weight: 600; }
+.message.bot { color: #00bcd4; font-weight: 600; }
+#typing-indicator {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  display: none;
+  color: #8a2be2;
+}
 input {
-  width: 100%;
-  max-width: 600px;
+  max-width: 600px; width: 100%;
+  padding: 10px; border-radius: 6px;
+  border: none; background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+body.light input {
+  background: rgba(0,0,0,0.1); color: #111;
+}
+button {
+  max-width: 600px; width: 100%;
   padding: 10px;
-  margin: 5px auto;
-  display: block;
-  border-radius: 6px;
-  border: none;
-  background: #2f2f46;
-  co
+  background: linear-gradient(to right, #8a2be2, #00bcd4);
+  border: none; border-radius: 6px; color: #fff; font-weight: 700;
+}
+footer {
+  padding: 20px; text-align: center; background: rgba(0,0,0,0.5);
+}
