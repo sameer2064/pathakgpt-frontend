@@ -1,89 +1,64 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #1e1e2f;
+  font-family: 'Poppins', sans-serif;
+  background: #121212;
   color: #fff;
 }
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #fff;
-}
-
-.logo-icon {
-  background: #8a2be2;
-  padding: 8px;
-  border-radius: 6px;
-  font-weight: bold;
-}
-
-.logo-text {
-  font-weight: bold;
-  margin-left: 8px;
-  font-size: 1.5rem;
-}
-
-.theme-toggle {
-  padding: 6px 12px;
-  border: 1px solid #8a2be2;
-  border-radius: 6px;
-  font-size: 0.9rem;
-}
-
 .chat-container {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #2e2e3e;
-  border-radius: 10px;
+  display: flex; flex-direction: column;
+  max-width: 600px; margin: auto; padding: 20px;
+  height: 100vh;
 }
-
-.chat-header h2 {
-  text-align: center;
-  font-weight: bold;
+header {
+  display: flex; align-items: center; gap: 10px;
 }
-
-.typing {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #bbb;
-}
-
-.chat-box {
-  background: #0f0f1f;
+.logo {
+  width: 40px; height: 40px;
+  background: linear-gradient(45deg, #8a2be2, #00bcd4);
+  display: flex; align-items: center; justify-content: center;
   border-radius: 8px;
-  height: 300px;
-  margin: 10px 0;
+  font-weight: 700; font-size: 1.2rem;
+}
+.title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.chat-box {
+  flex-grow: 1;
+  background: rgba(255,255,255,0.05);
+  margin: 20px 0;
   padding: 10px;
+  border-radius: 10px;
   overflow-y: auto;
 }
-
-.input-container {
+.message {
+  margin: 5px 0;
+}
+.message.user { color: #8a2be2; font-weight: 600; }
+.message.bot { color: #00bcd4; font-weight: 600; }
+.input-area {
   display: flex;
   gap: 10px;
 }
-
 input {
-  flex: 1;
+  flex-grow: 1;
   padding: 10px;
   border-radius: 6px;
   border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
 }
-
 button {
   padding: 10px 20px;
-  border-radius: 6px;
+  background: linear-gradient(45deg, #8a2be2, #00bcd4);
   border: none;
-  background: #8a2be2;
+  border-radius: 6px;
   color: #fff;
-  font-weight: bold;
+  font-weight: 700;
+}
+.typing {
+  font-size: 0.9rem;
+  color: #8a2be2;
+  display: none;
 }
