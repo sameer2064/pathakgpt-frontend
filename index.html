@@ -7,11 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="light-mode">
-  <div class="toggle-container">
-    <button id="theme-toggle" class="toggle-btn">Switch to Dark</button>
-  </div>
-
+<body>
   <div class="hero">
     <h1 class="big-title">PathakGPT</h1>
     <p class="tagline">Experience the future of conversation with <strong>PathakGPT</strong>.</p>
@@ -19,22 +15,5 @@
     <a href="https://pathaksameer.com.np" class="btn outline">Visit Website</a>
   </div>
   <div class="background-animation"></div>
-
-  <script>
-    const button = document.getElementById("theme-toggle");
-    const body = document.body;
-
-    button.addEventListener("click", () => {
-      if (body.classList.contains("light-mode")) {
-        body.classList.remove("light-mode");
-        body.classList.add("dark-mode");
-        button.textContent = "Switch to Light";
-      } else {
-        body.classList.remove("dark-mode");
-        body.classList.add("light-mode");
-        button.textContent = "Switch to Dark";
-      }
-    });
-  </script>
 </body>
 </html>
