@@ -1,58 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PathakGPT</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #0d1117;
-      color: white;
-      padding: 20px;
-    }
-    .chat-box {
-      max-width: 600px;
-      margin: auto;
-      background: #161b22;
-      padding: 20px;
-      border-radius: 12px;
-    }
-    .message { margin: 10px 0; }
-    .user { color: #58a6ff; }
-    .bot { color: #8b949e; }
-    input, button {
-      padding: 10px;
-      width: 100%;
-      margin-top: 10px;
-      border: none;
-      border-radius: 6px;
-    }
-    input {
-      background: #21262d;
-      color: white;
-    }
-    button {
-      background: #238636;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>🤖 PathakGPT (Powered by Gemini)</h1>
-  <div class="chat-box" id="chat"></div>
-  <input id="user-input" placeholder="Ask me anything..." />
-  <button onclick="sendMessage()">Send</button>
+  <header class="navbar">
+    <div class="logo">🤖 PathakGPT</div>
+    <nav>
+      <a href="#chat">Chat</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to <span>PathakGPT</span></h1>
+    <p>Your futuristic AI assistant</p>
+    <a href="#chat" class="cta-button">Start Chatting</a>
+  </section>
+
+  <section id="chat" class="chat-section">
+    <h2>🧠 Chat with PathakGPT</h2>
+    <div class="chat-box" id="chat-box"></div>
+    <input id="user-input" placeholder="Ask me anything..." />
+    <button onclick="sendMessage()">Send</button>
+  </section>
+
+  <section id="about" class="about-section">
+    <h2>About This AI</h2>
+    <p>Created by Sameer Pathak, this chatbot is built to respond with intelligence, speed and accuracy. Explore the future of conversation!</p>
+  </section>
+
+  <footer>
+    <p>© 2025 PathakGPT by Sameer Pathak. All rights reserved.</p>
+  </footer>
 
   <script>
     async function sendMessage() {
       const input = document.getElementById("user-input");
-      const chat = document.getElementById("chat");
-      const userText = input.value;
+      const chatBox = document.getElementById("chat-box");
+      const userText = input.value.trim();
 
       if (!userText) return;
 
-      chat.innerHTML += `<div class="message user"><b>You:</b> ${userText}</div>`;
+      chatBox.innerHTML += `<div class="message user"><b>You:</b> ${userText}</div>`;
       input.value = "";
 
       const res = await fetch("https://pathakgpt-gemini.onrender.com/ask", {
@@ -62,7 +55,8 @@
       });
 
       const data = await res.json();
-      chat.innerHTML += `<div class="message bot"><b>PathakGPT:</b> ${data.text}</div>`;
+      chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> ${data.text}</div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
     }
   </script>
 </body>
