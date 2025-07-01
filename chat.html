@@ -4,27 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chat - PathakGPT</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="chat.css" />
 </head>
-<body class="dark-theme">
+<body>
   <header class="header">
-    <div class="logo">
+    <a href="index.html" class="logo">
       <div class="logo-icon">P</div>
       <span class="logo-text">PathakGPT</span>
-    </div>
-    <button id="theme-toggle" class="theme-toggle">Switch to Light</button>
+    </a>
+    <div class="theme-toggle">Switch to Dark</div>
   </header>
 
-  <section class="chat-section">
-    <div class="chat-container">
-      <h2>💬 PathakGPT Chat</h2>
-      <div id="chat-box" class="chat-box"></div>
-      <p id="typing-indicator" class="typing-indicator" style="display:none;">PathakGPT is typing...</p>
-      <input id="user-input" placeholder="Ask me anything..." />
-      <button onclick="sendMessage()">Send</button>
+  <main class="chat-container">
+    <h2>💬 PathakGPT Chat</h2>
+    <div class="chat-box">
+      <!-- Chat messages will appear here -->
     </div>
-  </section>
-
-  <script src="script.js"></script>
+    <input type="text" placeholder="Type your message...">
+    <button>Send</button>
+  </main>
 </body>
 </html>
