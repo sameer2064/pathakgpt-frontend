@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PathakGPT - AI Assistant</title>
+  <title>PathakGPT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- NAVBAR -->
   <nav>
     <div class="nav-left">
       <div class="logo">P</div>
@@ -22,82 +22,44 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
-    <h1><span>Next-Gen AI Assistant</span></h1>
-    <p>Experience the future of AI conversation with <strong>PathakGPT</strong> — Your personal intelligent assistant crafted by <strong>Sameer Pathak</strong>.</p>
+    <h1 class="big-title">PathakGPT</h1>
+    <p class="tagline">Experience the future of conversation. Your personal AI assistant crafted by <strong>Sameer Pathak</strong>.</p>
     <div class="buttons">
       <a href="#chat" class="btn primary">Start Chatting</a>
       <a href="https://pathaksameer.com.np" class="btn outline">Visit Website</a>
     </div>
   </section>
 
-  <!-- FEATURES -->
   <section class="features">
     <div class="feature-card">
-      <div class="icon">🧠</div>
-      <h3>Advanced AI</h3>
+      <h3>🚀 Advanced AI</h3>
       <p>Powered by cutting-edge language models</p>
     </div>
     <div class="feature-card">
-      <div class="icon">⚡</div>
-      <h3>Lightning Fast</h3>
-      <p>Instant responses to your queries</p>
+      <h3>⚡ Instant Response</h3>
+      <p>Get answers without delay</p>
     </div>
     <div class="feature-card">
-      <div class="icon">✨</div>
-      <h3>Personalized</h3>
-      <p>Tailored responses just for you</p>
+      <h3>🎯 Personalized</h3>
+      <p>Tailored just for you</p>
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section class="about">
-    <h2>👨‍💻 Meet the Creator</h2>
-    <p>Built by <strong>Sameer Pathak</strong>, founder of pathaksameer.com.np. Passionate about creating AI solutions that push the boundaries of what's possible. Making advanced AI accessible for everyone.</p>
-    <div class="badges">
-      <span>AI Developer</span>
-      <span>Tech Entrepreneur</span>
-      <span>Innovation Leader</span>
-    </div>
-    <a href="https://pathaksameer.com.np" class="btn primary small">Visit My Website</a>
+    <h2>Meet the Creator</h2>
+    <p>Built by <strong>Sameer Pathak</strong>, founder of <strong>pathaksameer.com.np</strong>. Passionate about pushing AI boundaries to make it accessible and powerful for everyone.</p>
   </section>
 
-  <!-- STATS -->
-  <section class="stats">
-    <div class="stat">
-      <div class="num">99.9%</div>
-      <div>Uptime</div>
-    </div>
-    <div class="stat">
-      <div class="num">1M+</div>
-      <div>Conversations</div>
-    </div>
-    <div class="stat">
-      <div class="num">50+</div>
-      <div>Languages</div>
-    </div>
-    <div class="stat">
-      <div class="num">24/7</div>
-      <div>Availability</div>
-    </div>
-  </section>
-
-  <!-- CHAT -->
   <section class="chat" id="chat">
-    <h2>💬 Ask Anything</h2>
+    <h2>💬 Chat with PathakGPT</h2>
     <div id="chat-box" class="chat-box"></div>
-    <input id="user-input" placeholder="Ask me anything..."/>
+    <div id="typing-indicator" class="typing">PathakGPT is typing...</div>
+    <input id="user-input" placeholder="Type your question..."/>
     <button onclick="sendMessage()">Send</button>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <div>
-      <div class="logo">P</div>
-      <span class="brand">PathakGPT</span>
-    </div>
-    <p>The next generation AI assistant created by Sameer Pathak. Experience intelligent conversations like never before.</p>
     <p>© 2025 PathakGPT by Sameer Pathak. All rights reserved.</p>
   </footer>
 
@@ -112,10 +74,12 @@
     async function sendMessage() {
       const input = document.getElementById("user-input");
       const chatBox = document.getElementById("chat-box");
+      const typing = document.getElementById("typing-indicator");
       const userText = input.value.trim();
       if (!userText) return;
       chatBox.innerHTML += `<div class="message user"><b>You:</b> ${userText}</div>`;
       input.value = "";
+      typing.style.display = "block";
       try {
         const res = await fetch("https://pathakgpt-gemini.onrender.com/ask", {
           method: "POST",
@@ -125,8 +89,9 @@
         const data = await res.json();
         chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> ${data.text}</div>`;
       } catch {
-        chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> Error connecting to server</div>`;
+        chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> Sorry, I couldn’t connect right now.</div>`;
       }
+      typing.style.display = "none";
       chatBox.scrollTop = chatBox.scrollHeight;
     }
   </script>
