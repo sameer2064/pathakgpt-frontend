@@ -9,15 +9,23 @@
 <body>
   <!-- NAVBAR -->
   <nav>
-    <div class="logo">P</div>
-    <div class="brand">PathakGPT</div>
-    <button id="theme-toggle" aria-label="Toggle theme"></button>
+    <div class="nav-left">
+      <div class="logo">P</div>
+      <span class="brand">PathakGPT</span>
+    </div>
+    <div class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" id="theme-switch">
+        <span class="slider"></span>
+      </label>
+      <small id="theme-label">Switch to Light</small>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <h1><span>PathakGPT</span></h1>
-    <p>🚀 Experience the future of AI conversation</p>
+    <h1><span>Next-Gen AI Assistant</span></h1>
+    <p>Experience the future of AI conversation with <strong>PathakGPT</strong> — Your personal intelligent assistant crafted by <strong>Sameer Pathak</strong>.</p>
     <div class="buttons">
       <a href="#chat" class="btn primary">Start Chatting</a>
       <a href="https://pathaksameer.com.np" class="btn outline">Visit Website</a>
@@ -43,35 +51,71 @@
     </div>
   </section>
 
+  <!-- ABOUT -->
+  <section class="about">
+    <h2>👨‍💻 Meet the Creator</h2>
+    <p>Built by <strong>Sameer Pathak</strong>, founder of pathaksameer.com.np. Passionate about creating AI solutions that push the boundaries of what's possible. Making advanced AI accessible for everyone.</p>
+    <div class="badges">
+      <span>AI Developer</span>
+      <span>Tech Entrepreneur</span>
+      <span>Innovation Leader</span>
+    </div>
+    <a href="https://pathaksameer.com.np" class="btn primary small">Visit My Website</a>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stat">
+      <div class="num">99.9%</div>
+      <div>Uptime</div>
+    </div>
+    <div class="stat">
+      <div class="num">1M+</div>
+      <div>Conversations</div>
+    </div>
+    <div class="stat">
+      <div class="num">50+</div>
+      <div>Languages</div>
+    </div>
+    <div class="stat">
+      <div class="num">24/7</div>
+      <div>Availability</div>
+    </div>
+  </section>
+
   <!-- CHAT -->
-  <section class="chat-section" id="chat">
+  <section class="chat" id="chat">
     <h2>💬 Ask Anything</h2>
     <div id="chat-box" class="chat-box"></div>
-    <input id="user-input" placeholder="Ask me anything..." />
+    <input id="user-input" placeholder="Ask me anything..."/>
     <button onclick="sendMessage()">Send</button>
   </section>
 
   <!-- FOOTER -->
   <footer>
+    <div>
+      <div class="logo">P</div>
+      <span class="brand">PathakGPT</span>
+    </div>
+    <p>The next generation AI assistant created by Sameer Pathak. Experience intelligent conversations like never before.</p>
     <p>© 2025 PathakGPT by Sameer Pathak. All rights reserved.</p>
   </footer>
 
   <script>
-    const toggleBtn = document.getElementById("theme-toggle");
-    toggleBtn.addEventListener("click", () => {
+    const switchInput = document.getElementById("theme-switch");
+    const label = document.getElementById("theme-label");
+    switchInput.addEventListener("change", () => {
       document.body.classList.toggle("light");
+      label.textContent = document.body.classList.contains("light") ? "Switch to Dark" : "Switch to Light";
     });
 
     async function sendMessage() {
       const input = document.getElementById("user-input");
       const chatBox = document.getElementById("chat-box");
       const userText = input.value.trim();
-
       if (!userText) return;
-
       chatBox.innerHTML += `<div class="message user"><b>You:</b> ${userText}</div>`;
       input.value = "";
-
       try {
         const res = await fetch("https://pathakgpt-gemini.onrender.com/ask", {
           method: "POST",
@@ -80,10 +124,9 @@
         });
         const data = await res.json();
         chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> ${data.text}</div>`;
-      } catch (err) {
+      } catch {
         chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> Error connecting to server</div>`;
       }
-
       chatBox.scrollTop = chatBox.scrollHeight;
     }
   </script>
