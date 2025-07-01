@@ -4,96 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PathakGPT</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
-    <div class="nav-left">
-      <div class="logo">P</div>
-      <span class="brand">PathakGPT</span>
-    </div>
-    <div class="theme-toggle">
-      <label class="switch">
-        <input type="checkbox" id="theme-switch">
-        <span class="slider"></span>
-      </label>
-      <small id="theme-label">Switch to Light</small>
-    </div>
-  </nav>
-
-  <section class="hero">
+  <div class="hero">
     <h1 class="big-title">PathakGPT</h1>
-    <p class="tagline">Experience the future of conversation. Your personal AI assistant crafted by <strong>Sameer Pathak</strong>.</p>
-    <div class="buttons">
-      <a href="#chat" class="btn primary">Start Chatting</a>
-      <a href="https://pathaksameer.com.np" class="btn outline">Visit Website</a>
-    </div>
-  </section>
-
-  <section class="features">
-    <div class="feature-card">
-      <h3>🚀 Advanced AI</h3>
-      <p>Powered by cutting-edge language models</p>
-    </div>
-    <div class="feature-card">
-      <h3>⚡ Instant Response</h3>
-      <p>Get answers without delay</p>
-    </div>
-    <div class="feature-card">
-      <h3>🎯 Personalized</h3>
-      <p>Tailored just for you</p>
-    </div>
-  </section>
-
-  <section class="about">
-    <h2>Meet the Creator</h2>
-    <p>Built by <strong>Sameer Pathak</strong>, founder of <strong>pathaksameer.com.np</strong>. Passionate about pushing AI boundaries to make it accessible and powerful for everyone.</p>
-  </section>
-
-  <section class="chat" id="chat">
-    <h2>💬 Chat with PathakGPT</h2>
-    <div id="chat-box" class="chat-box"></div>
-    <div id="typing-indicator" class="typing">PathakGPT is typing...</div>
-    <input id="user-input" placeholder="Type your question..."/>
-    <button onclick="sendMessage()">Send</button>
-  </section>
-
-  <footer>
-    <p>© 2025 PathakGPT by Sameer Pathak. All rights reserved.</p>
-  </footer>
-
-  <script>
-    const switchInput = document.getElementById("theme-switch");
-    const label = document.getElementById("theme-label");
-    switchInput.addEventListener("change", () => {
-      document.body.classList.toggle("light");
-      label.textContent = document.body.classList.contains("light") ? "Switch to Dark" : "Switch to Light";
-    });
-
-    async function sendMessage() {
-      const input = document.getElementById("user-input");
-      const chatBox = document.getElementById("chat-box");
-      const typing = document.getElementById("typing-indicator");
-      const userText = input.value.trim();
-      if (!userText) return;
-      chatBox.innerHTML += `<div class="message user"><b>You:</b> ${userText}</div>`;
-      input.value = "";
-      typing.style.display = "block";
-      try {
-        const res = await fetch("https://pathakgpt-gemini.onrender.com/ask", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: userText })
-        });
-        const data = await res.json();
-        chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> ${data.text}</div>`;
-      } catch {
-        chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> Sorry, I couldn’t connect right now.</div>`;
-      }
-      typing.style.display = "none";
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-  </script>
+    <p class="tagline">Experience the future of conversation with <strong>PathakGPT</strong>.</p>
+    <a href="chat.html" class="btn primary">Start Chatting</a>
+    <a href="https://pathaksameer.com.np" class="btn outline">Visit Website</a>
+  </div>
+  <div class="background-animation"></div>
 </body>
 </html>
