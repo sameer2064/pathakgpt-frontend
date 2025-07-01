@@ -1,69 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PathakGPT</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #0d1117;
-      color: white;
-      padding: 20px;
-    }
-    .chat-box {
-      max-width: 600px;
-      margin: auto;
-      background: #161b22;
-      padding: 20px;
-      border-radius: 12px;
-    }
-    .message { margin: 10px 0; }
-    .user { color: #58a6ff; }
-    .bot { color: #8b949e; }
-    input, button {
-      padding: 10px;
-      width: 100%;
-      margin-top: 10px;
-      border: none;
-      border-radius: 6px;
-    }
-    input {
-      background: #21262d;
-      color: white;
-    }
-    button {
-      background: #238636;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <h1>🤖 PathakGPT (Powered by Gemini)</h1>
-  <div class="chat-box" id="chat"></div>
-  <input id="user-input" placeholder="Ask me anything..." />
-  <button onclick="sendMessage()">Send</button>
-
-  <script>
-    async function sendMessage() {
-      const input = document.getElementById("user-input");
-      const chat = document.getElementById("chat");
-      const userText = input.value;
-
-      if (!userText) return;
-
-      chat.innerHTML += `<div class="message user"><b>You:</b> ${userText}</div>`;
-      input.value = "";
-
-      const res = await fetch("https://pathakgpt-gemini.onrender.com/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userText })
-      });
-
-      const data = await res.json();
-      chat.innerHTML += `<div class="message bot"><b>PathakGPT:</b> ${data.text}</div>`;
-    }
-  </script>
+<body class="bg">
+  <div class="center">
+    <h1 class="gradient-text">PathakGPT</h1>
+    <p class="subtitle">🚀 Next-Gen AI Assistant by Sameer Pathak</p>
+    <button onclick="location.href='chat.html'">Start Chatting</button>
+  </div>
 </body>
 </html>
