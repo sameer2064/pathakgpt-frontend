@@ -3,40 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PathakGPT</title>
+  <title>PathakGPT - AI Assistant</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">🤖 PathakGPT</div>
-    <nav>
-      <a href="#chat">Chat</a>
-      <a href="#about">About</a>
-    </nav>
-  </header>
-
+  <!-- Hero Landing Section -->
   <section class="hero">
-    <h1>Welcome to <span>PathakGPT</span></h1>
-    <p>Your futuristic AI assistant</p>
-    <a href="#chat" class="cta-button">Start Chatting</a>
+    <div class="container">
+      <h1><span>PathakGPT</span></h1>
+      <p>⚡ Powered by Sameer Inc.</p>
+      <div class="buttons">
+        <a href="#chat" class="btn primary">Start Chatting</a>
+        <a href="https://pathaksameer.com.np" class="btn outline">Visit Website</a>
+      </div>
+    </div>
   </section>
 
-  <section id="chat" class="chat-section">
-    <h2>🧠 Chat with PathakGPT</h2>
-    <div class="chat-box" id="chat-box"></div>
-    <input id="user-input" placeholder="Ask me anything..." />
-    <button onclick="sendMessage()">Send</button>
+  <!-- Chat Section -->
+  <section class="chat-section" id="chat">
+    <div class="chat-container">
+      <h2>💬 Ask Anything</h2>
+      <div id="chat-box" class="chat-box"></div>
+      <input id="user-input" placeholder="Ask me anything..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
   </section>
 
-  <section id="about" class="about-section">
-    <h2>About This AI</h2>
-    <p>Created by Sameer Pathak, this chatbot is built to respond with intelligence, speed and accuracy. Explore the future of conversation!</p>
-  </section>
-
+  <!-- Footer -->
   <footer>
     <p>© 2025 PathakGPT by Sameer Pathak. All rights reserved.</p>
   </footer>
 
+  <!-- Script -->
   <script>
     async function sendMessage() {
       const input = document.getElementById("user-input");
