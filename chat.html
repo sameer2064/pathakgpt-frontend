@@ -3,57 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PathakGPT Chat</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="chat.css" />
+  <title>Chat - PathakGPT</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="chat-container">
-    <header>
-      <div class="logo">P</div>
-      <div class="title">PathakGPT</div>
-    </header>
-    <div class="chat-box" id="chat-box"></div>
-    <div class="input-area">
-      <input id="user-input" placeholder="Type your message..." />
-      <button id="send-btn">Send</button>
+<body class="dark-theme">
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">P</div>
+      <span class="logo-text">PathakGPT</span>
     </div>
-    <div id="typing-indicator" class="typing">PathakGPT is typing...</div>
-  </div>
+    <button id="theme-toggle" class="theme-toggle">Switch to Light</button>
+  </header>
 
-  <script>
-    const chatBox = document.getElementById("chat-box");
-    const input = document.getElementById("user-input");
-    const sendBtn = document.getElementById("send-btn");
-    const typing = document.getElementById("typing-indicator");
+  <section class="chat-section">
+    <div class="chat-container">
+      <h2>💬 PathakGPT Chat</h2>
+      <div id="chat-box" class="chat-box"></div>
+      <p id="typing-indicator" class="typing-indicator" style="display:none;">PathakGPT is typing...</p>
+      <input id="user-input" placeholder="Ask me anything..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </section>
 
-    sendBtn.addEventListener("click", sendMessage);
-    input.addEventListener("keypress", function(e) {
-      if (e.key === "Enter") sendMessage();
-    });
-
-    async function sendMessage() {
-      const userText = input.value.trim();
-      if (!userText) return;
-      chatBox.innerHTML += `<div class="message user"><b>You:</b> ${userText}</div>`;
-      input.value = "";
-      typing.style.display = "block";
-      chatBox.scrollTop = chatBox.scrollHeight;
-
-      try {
-        const res = await fetch("https://pathakgpt-gemini.onrender.com/ask", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: userText })
-        });
-        const data = await res.json();
-        chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> ${data.text}</div>`;
-      } catch {
-        chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> Could not connect.</div>`;
-      }
-      typing.style.display = "none";
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
