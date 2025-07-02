@@ -14,7 +14,7 @@ body {
   flex-direction: column;
   width: 100%;
   max-width: 600px;
-  height: 90vh; /* Make sure everything fits */
+  height: 90vh;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -51,6 +51,7 @@ header {
 .message {
   margin: 5px 0;
 }
+
 .message.user { color: #8a2be2; font-weight: 600; }
 .message.bot { color: #00bcd4; font-weight: 600; }
 
