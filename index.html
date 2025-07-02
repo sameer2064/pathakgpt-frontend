@@ -9,13 +9,11 @@
 </head>
 <body class="light-mode">
   <header>
-    <div class="logo-btn" onclick="goHome()">
+    <a href="index.html" class="logo-btn">
       <div class="logo">P</div>
       <div class="logo-text">PathakGPT</div>
-    </div>
-    <button class="toggle-btn" onclick="toggleTheme()">
-      Switch to Dark
-    </button>
+    </a>
+    <button class="toggle-btn" id="toggle-theme">Switch to Dark</button>
   </header>
 
   <div class="hero">
@@ -27,23 +25,19 @@
   <div class="background-animation"></div>
 
   <script>
-    function toggleTheme() {
+    const toggleBtn = document.getElementById("toggle-theme");
+    toggleBtn.addEventListener("click", () => {
       const body = document.body;
-      const btn = document.querySelector('.toggle-btn');
-      if (body.classList.contains('light-mode')) {
-        body.classList.remove('light-mode');
-        body.classList.add('dark-mode');
-        btn.textContent = 'Switch to Light';
+      if (body.classList.contains("light-mode")) {
+        body.classList.remove("light-mode");
+        body.classList.add("dark-mode");
+        toggleBtn.textContent = "Switch to Light";
       } else {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
-        btn.textContent = 'Switch to Dark';
+        body.classList.remove("dark-mode");
+        body.classList.add("light-mode");
+        toggleBtn.textContent = "Switch to Dark";
       }
-    }
-
-    function goHome() {
-      window.location.href = 'index.html';
-    }
+    });
   </script>
 </body>
 </html>
