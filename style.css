@@ -5,11 +5,13 @@ body {
   background: #000;
   overflow: hidden;
 }
+
 .hero {
   min-height: 100vh;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center; position: relative; z-index: 2;
 }
+
 .big-title {
   font-family: 'Orbitron', sans-serif;
   font-size: 4rem;
@@ -17,9 +19,11 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .tagline {
   font-size: 1.2rem;
 }
+
 .btn {
   display: inline-block;
   margin: 10px;
@@ -29,14 +33,17 @@ body {
   font-weight: 600;
   transition: 0.3s;
 }
+
 .primary {
   background: linear-gradient(45deg, #8a2be2, #00bcd4);
   color: #fff;
 }
+
 .outline {
   border: 2px solid #8a2be2;
   color: #8a2be2;
 }
+
 .outline:hover {
   background: #8a2be2;
   color: #fff;
@@ -48,7 +55,39 @@ body {
               radial-gradient(circle at 30% 30%, rgba(0,188,212,0.2) 0%, transparent 70%);
   animation: moveBG 10s infinite alternate;
 }
+
 @keyframes moveBG {
   0% { background-position: center center, 30% 30%; }
   100% { background-position: 60% 60%, 70% 70%; }
+}
+
+.top-bar {
+  position: absolute; top: 10px; left: 10px; right: 10px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.logo-link {
+  display: flex; align-items: center; gap: 5px;
+  cursor: pointer;
+}
+
+.logo-box {
+  width: 30px; height: 30px;
+  background: linear-gradient(45deg, #8a2be2, #00bcd4);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-weight: bold; border-radius: 6px;
+}
+
+.logo-text {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+}
+
+#theme-toggle {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(45deg, #8a2be2, #00bcd4);
+  color: #fff;
+  cursor: pointer;
 }
