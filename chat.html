@@ -1,60 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PathakGPT Chat</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="chat.css" />
-</head>
-<body>
-  <header onclick="window.location.href='index.html'" style="cursor: pointer;">
-    <div class="logo">P</div>
-    <div class="title">PathakGPT</div>
-  </header>
+let isSending = false;
 
-  <div class="chat-container">
-    <div class="chat-box" id="chat-box"></div>
-    <div class="input-area">
-      <input id="user-input" placeholder="Type your message..." />
-      <button id="send-btn">Send</button>
-    </div>
-    <div id="typing-indicator" class="typing">PathakGPT is typing...</div>
-  </div>
+async function sendMessage() {
+  if (isSending) return; // prevent rapid sending
+  isSending = true;
 
-  <script>
-    const chatBox = document.getElementById("chat-box");
-    const input = document.getElementById("user-input");
-    const sendBtn = document.getElementById("send-btn");
-    const typing = document.getElementById("typing-indicator");
+  const userText = input.value.trim();
+  if (!userText) {
+    isSending = false;
+    return;
+  }
 
-    sendBtn.addEventListener("click", sendMessage);
-    input.addEventListener("keypress", function(e) {
-      if (e.key === "Enter") sendMessage();
+  chatBox.innerHTML += `<div class="message user"><b>You:</b> ${userText}</div>`;
+  input.value = "";
+  typing.style.display = "block";
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  try {
+    const res = await fetch("https://pathakgpt-gemini.onrender.com/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userText })
     });
-
-    async function sendMessage() {
-      const userText = input.value.trim();
-      if (!userText) return;
-      chatBox.innerHTML += `<div class="message user"><b>You:</b> ${userText}</div>`;
-      input.value = "";
-      typing.style.display = "block";
-      chatBox.scrollTop = chatBox.scrollHeight;
-
-      try {
-        const res = await fetch("https://pathakgpt-gemini.onrender.com/ask", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: userText })
-        });
-        const data = await res.json();
-        chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> ${data.text}</div>`;
-      } catch {
-        chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> Could not connect.</div>`;
-      }
-      typing.style.display = "none";
-      chatBox.scrollTop = chatBox.scrollHeight;
+    const data = await res.json();
+    chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> ${data.text}</div>`;
+    if (data.error) {
+      console.error("Gemini API error detail:", data.error);
     }
-  </script>
-</body>
-</html>
+  } catch {
+    chatBox.innerHTML += `<div class="message bot"><b>PathakGPT:</b> Could not connect.</div>`;
+  }
+
+  typing.style.display = "none";
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  setTimeout(() => {
+    isSending = false;
+  }, 2000); // 2 sec cooldown
+}
