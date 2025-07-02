@@ -7,7 +7,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="light-mode">
+  <header>
+    <div class="logo-btn" onclick="goHome()">
+      <div class="logo">P</div>
+      <div class="logo-text">PathakGPT</div>
+    </div>
+    <button class="toggle-btn" onclick="toggleTheme()">
+      Switch to Dark
+    </button>
+  </header>
+
   <div class="hero">
     <h1 class="big-title">PathakGPT</h1>
     <p class="tagline">Experience the future of conversation with <strong>PathakGPT</strong>.</p>
@@ -15,5 +25,25 @@
     <a href="https://pathaksameer.com.np" class="btn outline">Visit Website</a>
   </div>
   <div class="background-animation"></div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const btn = document.querySelector('.toggle-btn');
+      if (body.classList.contains('light-mode')) {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        btn.textContent = 'Switch to Light';
+      } else {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+        btn.textContent = 'Switch to Dark';
+      }
+    }
+
+    function goHome() {
+      window.location.href = 'index.html';
+    }
+  </script>
 </body>
 </html>
