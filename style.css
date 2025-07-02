@@ -1,7 +1,6 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
   transition: background 0.3s, color 0.3s;
 }
 
@@ -16,28 +15,32 @@ body {
 }
 
 header {
-  position: absolute;
+  position: fixed;
   top: 10px;
   left: 10px;
   right: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 100;
 }
 
 .logo-btn {
   display: flex;
   align-items: center;
-  cursor: pointer;
+  text-decoration: none;
 }
 
 .logo {
-  width: 40px; height: 40px;
+  width: 40px;
+  height: 40px;
   background: linear-gradient(45deg, #8a2be2, #00bcd4);
   display: flex;
-  align-items: center; justify-content: center;
+  align-items: center;
+  justify-content: center;
   border-radius: 8px;
-  font-weight: 700; font-size: 1.2rem;
+  font-weight: 700;
+  font-size: 1.2rem;
   color: #fff;
 }
 
@@ -46,6 +49,7 @@ header {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
+  color: inherit;
 }
 
 .toggle-btn {
@@ -60,8 +64,13 @@ header {
 
 .hero {
   min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; position: relative; z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .big-title {
@@ -95,17 +104,23 @@ header {
   border: 2px solid #8a2be2;
   color: #8a2be2;
 }
+
 .outline:hover {
   background: #8a2be2;
   color: #fff;
 }
 
 .background-animation {
-  position: absolute; top:0; left:0; width:100%; height:100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: radial-gradient(circle at center, rgba(138,43,226,0.2) 0%, transparent 70%),
               radial-gradient(circle at 30% 30%, rgba(0,188,212,0.2) 0%, transparent 70%);
   animation: moveBG 10s infinite alternate;
 }
+
 @keyframes moveBG {
   0% { background-position: center center, 30% 30%; }
   100% { background-position: 60% 60%, 70% 70%; }
